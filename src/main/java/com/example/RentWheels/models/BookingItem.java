@@ -1,4 +1,6 @@
-package com.example.RentWheels.entity;
+package com.example.RentWheels.models;
+
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,20 +22,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "vehicle_images")
-public class VehicleImages {
+@Table(name = "booking_item")
+public class BookingItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "booking_id", nullable = false)
+    private Bookings booking;
+
+    @ManyToOne(optional = false)
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;
 
     @Column(nullable = false)
-    private String key;
+    private LocalDate startDate;
 
-    @Column
-    private Boolean is_primary;
+    @Column(nullable = false)
+    private LocalDate endDate;
 }

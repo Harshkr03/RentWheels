@@ -1,11 +1,10 @@
-package com.example.RentWheels.entity;
+package com.example.RentWheels.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -29,28 +28,46 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "bookings")
-public class Bookings {
+@Table(name = "vehicle")
+public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "owner_id", nullable = false)
     private User user;
+
+    @Column(nullable = false)
+    private String brand;
+
+    @Column(nullable = false)
+    private String model;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    @Builder.Default
-    private Status status = Status.PENDING;
+    private Type type;
+
+    @Column(nullable = false)
+    private Double price_per_day;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "vehicle")
+    @Builder.Default
+    private List<VehicleImages> vehicleImages = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "vehicle")
+    @Builder.Default
+    private List<Availability> availabilities = new ArrayList<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "vehicle")
     @Builder.Default
     private List<BookingItem> bookingItems = new ArrayList<>();
 
-    public enum Status {
-        PENDING, CONFIRMED, CANCELLED, COMPLETED
+    public enum Type {
+        SCOOTY, BIKE, CAR, SUV
     }
 }

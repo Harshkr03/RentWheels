@@ -1,4 +1,4 @@
-package com.example.RentWheels.entity;
+package com.example.RentWheels.models;
 
 import java.time.LocalDate;
 

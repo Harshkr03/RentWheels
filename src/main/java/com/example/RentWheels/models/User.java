@@ -1,4 +1,4 @@
-package com.example.RentWheels.entity;
+package com.example.RentWheels.models;
 
 import java.util.ArrayList;
 import java.util.List;
