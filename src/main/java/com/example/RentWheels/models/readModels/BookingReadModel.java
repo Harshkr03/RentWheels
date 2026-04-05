@@ -1,6 +1,8 @@
 package com.example.RentWheels.models.readModels;
 
-import java.time.LocalDate;
+import java.util.List;
+
+import com.example.RentWheels.models.Bookings.Status;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,20 +14,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class BookingReadModel {
-    
-    private Long id;
 
-    private Long airbnbId;
+    private Long id;
 
     private Long userId;
 
-    private double totalPrice;
+    private Status status;
 
-    private String bookingStatus;
+    private Double totalPrice;
 
-    private String idempotencyKey;
-
-    private LocalDate checkInDate;
-
-    private LocalDate checkOutDate;
+    private List<BookingItemReadModel> bookingItems;
 }

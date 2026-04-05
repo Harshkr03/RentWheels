@@ -1,6 +1,6 @@
 package com.example.RentWheels.models.readModels;
 
-import java.time.LocalDate;
+import com.example.RentWheels.models.User.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,15 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AvailabilityReadModel {
+public class UserReadModel {
 
     private Long id;
 
-    private Long vehicleId;
+    private String name;
 
-    private LocalDate date;
+    private String email;
 
-    private Long bookingId;
-
-    private Boolean isBooked;
+    private Role role;
 }

@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AvailabilityReadModel {
-
-    private Long id;
+public class BookingItemReadModel {
 
     private Long vehicleId;
 
-    private LocalDate date;
+    private String brand;
 
-    private Long bookingId;
+    private String model;
 
-    private Boolean isBooked;
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 }

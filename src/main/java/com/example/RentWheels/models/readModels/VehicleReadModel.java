@@ -2,9 +2,8 @@ package com.example.RentWheels.models.readModels;
 
 import java.util.List;
 
-import com.example.RentWheels.models.Availability;
-import com.example.RentWheels.models.BookingItem;
-import com.example.RentWheels.models.VehicleImages;
+import com.example.RentWheels.models.Vehicle.Type;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,8 +14,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class VehicleReadModel {
-    
+
     private Long id;
+
+    private Long ownerId;
 
     private String brand;
 
@@ -24,15 +25,9 @@ public class VehicleReadModel {
 
     private Type type;
 
-    private Double price_per_day;
+    private Double pricePerDay;
 
-    private List<VehicleImages> vehicleImages;
+    private List<String> imageKeys;
 
-    private List<Availability> availabilities;
-
-    private List<BookingItem> bookingItems;
-
-    public enum Type {
-        SCOOTY, BIKE, CAR, SUV
-    }
+    private List<AvailabilityReadModel> availabilities;
 }

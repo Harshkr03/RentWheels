@@ -1,6 +1,8 @@
 package com.example.RentWheels.repositories.reads;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
@@ -39,6 +41,29 @@ public class RedisReadRepository {
         } catch (JacksonException e) {
             throw new RuntimeException("Failed to parse VehicleReadModel from Redis", e);
         }
+    }
+
+    public List<VehicleReadModel> findAllVehicles(){
+        Set<String> keys = redisTemplate.keys(VEHICLE_KEY_PREFIX + "*");
+
+        if (keys.isEmpty() || keys == null) {
+            return List.of(); // empty list
+        }
+
+        return keys.stream()
+        .map(key -> {
+            String value = redisTemplate.opsForValue().get(key);
+            if (value == null) {
+                return null;
+            }
+            try {
+                return objectMapper.readValue(value, VehicleReadModel.class);
+            } catch (JacksonException e) {
+                throw new RuntimeException("Failed to parse Vehicle read model from Redis", e);
+            }
+        })
+        .filter(vehicle -> vehicle != null)
+        .collect(Collectors.toList());
     }
 
     public List<AvailabilityReadModel> findAvailabilityByVehicleId(Long vehicleId) {
