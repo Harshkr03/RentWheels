@@ -12,16 +12,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
+@Data
 @Table(name = "availability")
 public class Availability {
 
@@ -36,7 +34,5 @@ public class Availability {
     @Column(nullable = false)
     private LocalDate date;
 
-    @Column(nullable = false)
-    @Builder.Default
-    private Boolean isBooked = false;
+    private Long bookingId;
 }
