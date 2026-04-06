@@ -27,7 +27,5 @@ public class VehicleReadModel {
 
     private Double pricePerDay;
 
-    private List<String> imageKeys;
-
     private List<AvailabilityReadModel> availabilities;
 }

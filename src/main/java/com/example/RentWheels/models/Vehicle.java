@@ -53,11 +53,6 @@ public class Vehicle {
     @JsonIgnore
     @OneToMany(mappedBy = "vehicle")
     @Builder.Default
-    private List<VehicleImages> vehicleImages = new ArrayList<>();
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "vehicle")
-    @Builder.Default
     private List<Availability> availabilities = new ArrayList<>();
 
     @JsonIgnore
